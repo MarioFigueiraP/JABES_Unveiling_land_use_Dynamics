@@ -187,7 +187,7 @@ inf_beta <- inla.stack(data = list(y = sapply(X = 1:nrow(DFsim.beta), FUN = func
 
 beta_model <- inla(data = inla.stack.data(inf_beta), family = "beta",
                    formula = y ~ -1 + beta0 + beta1 + f(sp, model = "besagproper2", graph = g, constr = TRUE), 
-                   control.compute = list(dic = TRUE, waic = TRUE, cpo = TRUE),
+                   control.compute = list(dic = FALSE, waic = FALSE, cpo = FALSE),
                    control.fixed = list(prec = list(beta0 = 0.001, beta1 = 0.001)),
                    verbose = FALSE)
 
@@ -226,7 +226,7 @@ formula_hurdle <- y ~ -1 + beta0 + beta1 + f(sp, model = "besagproper2", constr 
 hurdle_model <- inla(data = inla.stack.data(inf_total_stack), family = c("beta", "binomial", "gaussian"),
                      formula = formula_hurdle,
                      control.predictor = list(A = inla.stack.A(inf_total_stack)),
-                     control.compute = list(dic = TRUE, waic = TRUE, cpo = TRUE),
+                     control.compute = list(dic = FALSE, waic = FALSE, cpo = FALSE),
                      control.fixed = list(prec = list(beta0 = 0.001, beta1 = 0.001, beta0_ber = 0.001)),
                      control.family = list(list(), list(), list(hyper = list(prec = list(initial = 10, fixed = TRUE)))),
                      verbose = FALSE)
@@ -239,9 +239,6 @@ hurdle_model$summary.hyperpar
 
 RMSE_beta <- sqrt(mean((DFsim$sp - beta_model$summary.random$sp$mean)**2))
 RMSE_hurdle <- sqrt(mean((DFsim$sp - hurdle_model$summary.random$sp$mean)**2))
-
-beta_model$dic$family.dic
-hurdle_model$dic$family.dic
 
 # saveRDS(file = "./Data/ZerosExample_Models/beta_model.RDS", object = beta_model)
 # saveRDS(file = "./Data/ZerosExample_Models/hurdle_model.RDS", object = hurdle_model)
