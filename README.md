@@ -15,4 +15,4 @@ The script for Big Data is [**runme_BigData_Example.R**](./runme_BigData_Example
 
 ## 4- Extra
 
-Finally, script [**runme_Leroux_Example_ARL.R**](./runme_Leroux_Example_ARL.R) is an additional code example for simulating compositional data in small areas, with a spatial effect distributed according to a Leroux distribution. The compositions are evaluated using additive log-ratios (ALR), such that in the multivariate normal associated with the ALRs, the correlation matrix between the different compositions is analyzed.
+Finally, script [**runme_Leroux_Example_ARL.R**](./runme_Leroux_Example_ARL.R) is an additional code example for simulating compositional data in small areas, with a spatial effect distributed according to a Leroux distribution. The compositions are evaluated using additive log-ratios (ALR), such that in the multivariate normal associated with the ALRs, the correlation matrix between the different log-ratios is analyzed.
